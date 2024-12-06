@@ -1,0 +1,38 @@
+$sysinternals_folder = 'C:\Program Files\sysinternals'
+$sysinternals_zip_path = 'C:\Path\To\Downloaded\SysinternalsSuite.zip' # Update this path
+$sysmonconfig_file_path = 'C:\Path\To\Downloaded\sysmonconfig.xml' # Update this path
+
+if (Test-Path -Path $sysinternals_folder) {
+    Write-Host ('Sysinternals folder already exists')
+} else {
+    $OutPath = $env:TMP
+    $output = 'SysinternalsSuite.zip'
+
+    # Create Sysinternals folder
+    New-Item -Path "C:\Program Files" -Name "sysinternals" -ItemType "directory"
+
+    Try {
+        Write-Host ('Copying Sysinternals Tools to C:\Program Files\sysinternals...')
+        
+        # Extract the Sysinternals Suite ZIP file
+        Expand-Archive -Path $sysinternals_zip_path -DestinationPath $sysinternals_folder
+        Start-Sleep -s 10
+        
+        $serviceName = 'Sysmon64'
+        
+        If (Get-Service $serviceName -ErrorAction SilentlyContinue) {
+            Write-Host ('Sysmon Is Already Installed')
+        } else {
+            # Accept EULA
+            Invoke-Command {reg.exe ADD HKCU\Software\Sysinternals /v EulaAccepted /t REG_DWORD /d 1 /f}
+            Invoke-Command {reg.exe ADD HKU\.DEFAULT\Software\Sysinternals /v EulaAccepted /t REG_DWORD /d 1 /f}
+
+            # Install Sysmon using the local sysmonconfig file
+            Start-Process -FilePath "$sysinternals_folder\Sysmon64.exe" -ArgumentList @("-i", "$sysmonconfig_file_path")
+        }
+    } Catch {
+        $ErrorMessage = $_.Exception.Message
+        Write-Error -Message "$ErrorMessage"
+        exit 1
+    }
+}
