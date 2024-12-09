@@ -20,5 +20,7 @@ reg.exe ADD HKU\.DEFAULT\Software\Sysinternals /v EulaAccepted /t REG_DWORD /d 1
 STEP 7: Locate the sysmon-config.xml in the Sysinternals folder and then copy it to temp folder ( create if not present ). 
 
 STEP 8: Then open PowerShell as administrator and run the following command 
-
-"C:\Program Files\sysinternals\Sysmon64.exe" -i "C:\Temp\sysmonconfig-export.xml"
+1 : 
+cd "C:\Program Files\sysinternals"
+2 : 
+.\Sysmon64.exe -i "C:\temp\sysmonconfig.xml"
