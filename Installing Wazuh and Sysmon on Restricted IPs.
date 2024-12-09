@@ -1,0 +1,24 @@
+USE THE FOLLOWING STEPS TO INSTALL SYSMON ON THE MACHINE WITH THE RESTRICTED IP 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+STEP 1: Login TO the ITBackup internal MACHINE via cmd prompt. 
+
+STEP 2: locate the software then to Wazuh and then copy the Wazuh agent installer and the folder prevs to download.
+
+STEP 3: Then Double click to install the wazuh agent. 
+
+STEP 4: Then make systeminternal folder in the program internal. 
+
+STEP 5: Copy all the files from the prevs folder to the systeminternal folder. 
+
+STEP 6: Then run the following command to accept Systemintenal EUAL on Powershell(as Administrator) :- 
+
+reg.exe ADD HKCU\Software\Sysinternals /v EulaAccepted /t REG_DWORD /d 1 /f
+reg.exe ADD HKU\.DEFAULT\Software\Sysinternals /v EulaAccepted /t REG_DWORD /d 1 /f
+
+STEP 7: Locate the sysmon-config.xml in the Sysinternals folder and then copy it to temp folder ( create if not present ). 
+
+STEP 8: Then open PowerShell as administrator and run the following command 
+
+"C:\Program Files\sysinternals\Sysmon64.exe" -i "C:\Temp\sysmonconfig-export.xml"
