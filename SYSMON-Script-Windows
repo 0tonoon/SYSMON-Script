@@ -1,3 +1,6 @@
+USE THE FOLLOWING SCRIPT IF THE IP WE ARE TESTING IS A RESTRICTED IP.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $sysinternals_repo = 'download.sysinternals.com'
 $sysinternals_downloadlink = 'https://download.sysinternals.com/files/SysinternalsSuite.zip'
 $sysinternals_folder = 'C:\Program Files\sysinternals'
