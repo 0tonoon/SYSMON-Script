@@ -1,4 +1,4 @@
-USE THE FOLLOWING SCRIPT IF THE IP WE ARE TESTING IS A RESTRICTED IP.
+USE THE FOLLOWING SCRIPT IF THE IP WE ARE TESTING IS NOT A RESTRICTED IP.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 $sysinternals_repo = 'download.sysinternals.com'
